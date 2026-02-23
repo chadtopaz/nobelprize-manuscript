@@ -154,18 +154,11 @@ In constructing the prize selection network, we must keep in mind the various co
 To capture complexities like the aforementioned ones, we keep track of our data in the following manner. We represent each unique individual as a node. We attach to that node any personal demographics that are not directly tied to prize selection, such as gender, nationality, and so forth. Then, we apply edges to capture the roles of these individuals across prizes and across time. More specifically, each edge carries with it not just the specification of two nodes, but also a year, a Nobel Prize, and two network layers. For example, take the case of Marie Curie above. One of Curie's nominators for the Chemistry Prize in 1911 was Gaston Darboux. Therefore, our network has a directed edge pointing from Darboux to Curie. That edge specifies the year 1911, the field of chemistry, and the two network layers of nominators and nominees. Since Curie nominated Joseph Thomson for the Nobel Prize in Physics in 1905, the network has an edge pointing from Curie to Thomson. That edge specifies the year 1905, the field of physics, and, again, the two network layers of nominators and nominees.
 
 \subsection{Data Acquisition}
+\label{sec:dataacquisition}
 
-There is no single source from which one can obtain all of the data necessary to construct the network model. We will gather the necessary data for the five layers from a variety of sources, summarized in Table~\ref{tab2}. While information about governing/selection bodies, vetting bodies, and laureates is available up through the present day, information about nominators and their nominees is made public only 50 years after the fact. Therefore, our study is by necessity limited to the time period 1901 (when the first Nobel Prizes were given) through 1970.
+There is no single source from which one can obtain all of the data necessary to construct the network model. We gather the necessary data for the five layers from a variety of sources, summarized in Table~\ref{tab2}. While information about governing bodies, vetting bodies, and laureates is available up through the present day, information about nominators and their nominees is made public only 50 years after the fact, subject to a secrecy rule imposed by the Nobel Foundation. All data gathering was performed programmatically in R using a reproducible pipeline of eight scripts, available in a public repository \citep{nobelgithub}. Below we describe each stage in sufficient detail for independent replication.
 
-There are two steps to assembling the data. Our custom code for both stages of data collection is available in a GitHub repository for reproducibility \citep{nobelgithub}. First, we must determine the names of the individuals in each network layer. Then we must determine the relevant characteristics of those individuals, such as personal demographics. For the first step, we use the sources listed in the final column of Table~\ref{tab2}. For the second step, we use Wikidata \citep{wikidata}. Wikidata is a structured open knowledge database that, among other roles it plays, sits behind many Wikipedia pages. By using Wikidata as our source for characteristics of individuals in our database, we are implicitly adopting the choices made by its contributors. As merely one example, we ourselves do not weigh in with inferences of individuals' gender; we use the gender data vetted by Wikidata, recognizing that any demographic data that is not self-identified is imperfect.
-
-\textbf{Royal Swedish Academy of Sciences (RSAS).} From the RSAS's Swedish Wikipedia page, we gather historical data on members, including their names, years of induction, and individual Wikipedia page links. Using these links, we obtain each member's Wikidata ID (qid). Through these qids, we access Wikidata to fetch additional details: the year of death (indicating the end of lifelong membership), gender, birth country, and nationality.
-
-\textbf{Swedish Academy.} We harvest all information about the Swedish Academy directly from Wikidata. We acquire the same pieces of information as above, namely, qid, name, gender, birth country, and nationality, as well as the year of induction and year of death.
-
-\textbf{Storting.} We harvest all information about the Storting directly from Wikidata. We acquire qid, name, gender, birth country, and nationality, as well as the years of each individual's term in the body. Some individuals served multiple terms, sometimes disconnected in time, and hence have multiple observations in the data.
-
-\textbf{Karolinska Institutet.} Members of the selection body for the Prize in Physiology or Medicine, prior to 1984, include all full professors of the Karolinska Institute. We manually collected information about faculty at this medical institute by using archives from Project Runeberg. Specifically, Sweden's State Calendar was published at regular intervals and contains rosters of public employees listed by organization and role. A complete roster of full professors can be found for each year the calendar is published. Within the faculty description, there is also a year of birth, year of medical school graduation, and year joining the institute, along with promotion year if applicable. Professor emerita are also named, giving an end year for participation. Fourteen editions of the state calendar spanning 1881-1970 were manually mined for name, start year and end year. Separately, Wikidata qids were searched and connected to each individual, checking that biographical information matched or was plausible. Further information was referenced as needed from the individual's biography within the same state calendar.
+There are two broad steps to assembling the data. First, we must determine the identities of the individuals in each network layer and when they served. Then we must determine the relevant characteristics of those individuals, such as personal demographics. For the first step, we use the sources listed in the final column of Table~\ref{tab2}. For the second step, we use Wikidata \citep{wikidata}, a structured open knowledge database that, among other roles, provides the structured data behind many Wikipedia pages. By using Wikidata as our source for individual characteristics, we implicitly adopt the choices made by its contributors. As merely one example, we ourselves do not weigh in with inferences of individuals' gender; we use the gender data vetted by Wikidata, recognizing that any demographic data that is not self-identified is imperfect. Throughout the pipeline, we use Wikidata QIDs (unique entity identifiers of the form Q followed by a number) as the canonical identifier for each individual, enabling cross-referencing across data sources.
 
 \begin{table}[t!]
 \begin{tabular}{lll}
@@ -186,16 +179,153 @@ Nominators                    &                                     & \citet{Nob
                               &                                     &                                                                                                                                                    \\
 Nominees                      &                                     & \citet{NobelPrizeWebsite}                                               \\
                               &                                     &                                                                                                                                                    \\
-Laureates                     &                                     & \citet{wikidata}                                                                                                                                           \\ \hline
+Laureates                     &                                     & Nobel Prize API v2.1                                                                                                                                           \\ \hline
 \end{tabular}
 \caption{Sources for the data in each network layer.\label{tab2}}
 \end{table}
 
-\subsection{Final Data Set}
+\subsubsection{Governing Bodies}
+\label{sec:data-governing}
 
-Description of exactly what data we have. Needs to include number of nodes, number of edges of each type, what attributes do we have for edges, what attributes do we have for nodes.
+\textbf{Royal Swedish Academy of Sciences (RSAS).} The RSAS awards the prizes in Physics and Chemistry. Members are elected for life; their service begins at induction and ends at death. We scraped the membership list from the Swedish-language Wikipedia page \emph{Lista \"over ledam\"oter av Kungliga Vetenskapsakademien} \citep{Ledamotsregister}, which organizes members chronologically under bold year headers followed by bulleted lists of hyperlinked member names. Founding members (1739) appear under the headings ``Akademiens grundare'' and ``\"Ovriga.'' We parsed the rendered HTML by iterating through child elements in document order, updating the current induction year whenever a bold year header was encountered, and extracting all hyperlinked names from subsequent unordered lists. We excluded redlinks (articles not yet created) and non-article links.
 
-Data is available in a GitHub.
+Wikidata QIDs were resolved in batch using the MediaWiki \texttt{action=query\&prop=pageprops} API, which maps up to 50 Wikipedia page titles to their corresponding Wikidata items per request. This API also handles title normalization (e.g., converting underscores to spaces and resolving Unicode variants), which we accounted for when matching responses to input titles. We used exponential backoff (delay doubling from 2 seconds, up to 5 retries) for failed requests and imposed a 0.2-second delay between batches. For each member, we recorded the induction year as the start year; end years were left initially blank and later imputed from Wikidata death dates (see Section~\ref{sec:data-demographics}). Where multiple records existed for the same QID (e.g., due to class transfers within the Academy), we retained only the earliest induction record. The final dataset contains 2{,}312 RSAS members spanning 1739--2025, all with resolved QIDs.
+
+\textbf{Swedish Academy.} The Swedish Academy awards the Prize in Literature. Its 18 members are appointed for life. We queried Wikidata directly via SPARQL, selecting all individuals holding position (P39) ``member of the Swedish Academy'' (Q207360), excluding honorary members (Q97563901). Start and end dates were extracted from the \texttt{pq:P580} and \texttt{pq:P582} qualifiers on each position statement and parsed from Wikidata's ISO~8601 datetime format (e.g., \texttt{1871-12-20T00:00:00Z} $\to$ 1871). All SPARQL queries throughout the pipeline were executed via HTTP POST to the Wikidata Query Service endpoint, with results returned in JSON format. We implemented retry logic with exponential backoff (5-second base delay, up to 10 retries) and identified our bot with a descriptive User-Agent string per Wikidata's access policy. The query yielded 202 member records.
+
+\textbf{Storting (Norwegian Parliament).} The Storting awards the Peace Prize. We queried Wikidata for all entities classified as human (P31 = Q5) holding position (P39) ``member of the Storting'' (Q9045502), extracting start and end dates from position qualifiers. Norwegian parliamentarians may serve non-consecutive terms; we consolidated consecutive terms by grouping each member's service periods chronologically and merging periods where the gap between one term's end year and the next term's start year was at most one year. Non-consecutive terms were preserved as separate records. This yielded 4{,}281 member-term records spanning 1814--2025.
+
+\textbf{Karolinska Institutet.} The Karolinska Institutet (KI) awards the Prize in Physiology or Medicine. Prior to 1977, all full professors at KI constituted the selection body; in 1977 the Nobel Assembly was established as a distinct entity, and in 1984 its membership was fixed at 50. Neither Wikidata nor KI's website publishes a complete roster of the Nobel Assembly.
+
+We compiled KI professor data from Project Runeberg's digitized editions of the Swedish state calendar (\emph{statskalendern}) \citep{KarolinskaEmployees}, covering 1881--1970. Fourteen editions were manually mined for each professor's name, start year, and end year. Separately, Wikidata QIDs were searched and connected to each individual, verifying that biographical information matched or was plausible. The resulting spreadsheet contains one row per professor; we retained the 140 records with confirmed QIDs and both start and end years.
+
+Post-1970 Nobel Assembly membership is not publicly available: Wikidata contains essentially no position (P39) or membership (P463) records for the Nobel Assembly entity (Q3375124), KI's website does not publish a member roster, and Project Runeberg's digitized calendars stop circa 1972. This is a known structural gap in our data (see Section~\ref{sec:gaps}).
+
+\subsubsection{Vetting Bodies (Nobel Committees)}
+\label{sec:data-vetting}
+
+Each prize has a dedicated Nobel Committee that reviews nominations and prepares recommendations for the governing body.
+
+\textbf{Chemistry, Physics, and Physiology/Medicine Committees.} These three committees are documented on Swedish-language Wikipedia \citep{NobelCommitteeChemistry,NobelCommitteePhysics,NobelCommitteePhysiology}. We extracted membership lists using a general-purpose parser that fetches wikitext (not rendered HTML) via the MediaWiki API (\texttt{action=parse\&prop=wikitext}), splits the text into sections by heading markers, and extracts bullet-list entries from sections titled ``Tidigare ledam\"oter'' (former members), ``Nuvarande ledam\"oter'' (current members), and ``Sekreterare'' (secretaries). Each entry follows one of several Swedish Wikipedia conventions: \texttt{[[Name]], YYYY--YYYY} (former members with date range), \texttt{[[Name]], invald YYYY} (current members, Swedish format), or \texttt{[[Name]], YYYY--} (current members, open-ended). We parsed Wikipedia article titles from double-bracket link syntax, extracted start and end years via regular expressions, and resolved QIDs through the batch MediaWiki API. The Swedish Wikipedia page for the Physiology/Medicine committee explicitly states ``Listan \"ar ofullst\"andig'' (the list is incomplete). Final counts: Chemistry 50 members, Physics 51, Physiology/Medicine 72 (59 with QIDs).
+
+\textbf{Literature Committee.} The Nobel Committee for Literature is drawn from the Swedish Academy. No standalone membership list exists on Wikipedia. Instead, we extracted committee service years from individual member biographies on \texttt{svenskaakademien.se} \citep{Ledamotsregister}. We first queried Wikidata for all Swedish Academy members with their seat numbers (extracted from position labels matching the pattern ``member of the Swedish Academy at seat $N$''). We then constructed biography page URLs following the site's convention: \texttt{/de-aderton/stol-nr-\{seat\}-\{name-slug\}}, where the name slug is a lowercased, hyphen-separated, ASCII-transliterated version of the member's name.
+
+The Swedish Academy website is built as a Nuxt.js single-page application. Rather than executing JavaScript, we extracted biography text directly from the \texttt{\_\_NUXT\_DATA\_\_} script tag embedded in each page's HTML source. This payload contains HTML-encoded biography text; we decoded HTML entities, stripped markup tags, and searched for mentions of ``Nobelkommitt\'en'' followed by year ranges. Two-digit years were expanded to four digits based on context (e.g., ``1969--86'' $\to$ 1969--1986). We retained only members whose biographies mentioned Nobel Committee service, yielding 35 members. This extraction method is fragile to future website redesigns.
+
+\textbf{Norwegian Nobel Committee.} The Norwegian Nobel Committee both vets nominations and awards the Peace Prize. We parsed the membership table from the English Wikipedia page \emph{List of members of the Norwegian Nobel Committee} \citep{NorwegianNobelCommittee}, extracting start and end years and resolving QIDs via the batch MediaWiki API. This yielded 61 members (57 with QIDs).
+
+\subsubsection{Nominations}
+\label{sec:data-nominations}
+
+We scraped the Nobel Prize Nomination Archive \citep{NobelPrizeWebsite}, which is subject to a 50-year secrecy rule. As of 2025, nomination records are available through 1974 or 1975 for Physics, Chemistry, Literature, and Peace. Physiology or Medicine nominations are available only through 1953; the Karolinska Institutet has not released records for 1954--1974, likely related to the 1977 Swedish transparency law and the concurrent restructuring that created the Nobel Assembly.
+
+The archive's web interface uses numeric prize codes in its URL parameters: Physics = 1, Chemistry = 2, Physiology or Medicine = 3, Literature = 4, Peace = 5. For each of 353 prize-year combinations, we first retrieved the list page and extracted all nomination IDs from links to detail pages. We then scraped each detail page to extract the nomination year, prize category, and the names and internal person IDs of all nominees and nominators. Detail pages use a two-column table layout with bold section headers (``Nominee:'' and ``Nominator:'') followed by person links. We classified each person link by walking through all table cells in document order and tracking which section header was most recently encountered. A single nomination may list multiple nominees (16.3\% of nominations) and, more rarely, multiple nominators (1.1\%), reflecting joint nominations and co-signed nomination letters; we generated all pairwise nominee--nominator combinations.
+
+Prize names were standardized to a common vocabulary (e.g., ``Physiology or Medicine'' $\to$ ``Physiology/Medicine''). The Peace Prize archive uses the header format ``Nomination for Nobel Peace Prize'' rather than ``Nobel Prize in \ldots'' as used by the other four categories; we handled this as a special case in parsing. List pages were fetched sequentially with 0.5-second inter-request delays; detail pages were fetched in parallel across $N-1$ CPU cores (capped at 12) with 0.2-second per-worker delays. Partial results were checkpointed to disk after each prize-year to allow resumption. The final dataset contains 27{,}932 nomination records spanning 22{,}600 unique nominations, 4{,}006 unique nominees, and 11{,}650 unique nominators. Among these, 755 records (2.7\%) have anonymous or unlisted nominators, and 2 records represent self-nominations.
+
+\subsubsection{Laureates}
+\label{sec:data-laureates}
+
+We retrieved all Nobel Prize laureates from the official Nobel Prize API (v2.1, \texttt{api.nobelprize.org/2.1/laureates}), which provides structured JSON data including Wikidata QIDs, names, gender, award year, prize category, prize portion, motivation text, and primary affiliation at the time of award. We paginated through all results and filtered to the five original prize categories, excluding the Sveriges Riksbank Prize in Economic Sciences (established 1969). Laureates who received multiple prizes (7 individuals, including Marie Curie, Linus Pauling, Frederick Sanger, John Bardeen, and K.~Barry Sharpless) appear as separate records per prize. The final dataset contains 927 laureate-prize records representing 919 unique individuals, with 100\% QID coverage.
+
+\subsubsection{Entity Resolution for Nomination Archive People}
+\label{sec:data-entity-resolution}
+
+The nomination archive identifies people by internal numeric IDs and names only, without Wikidata QIDs or other persistent identifiers. To integrate nomination data with the rest of the network (which uses Wikidata QIDs as the canonical identifier), we developed a two-stage matching procedure.
+
+In the first stage, for each of the 14{,}471 unique people in the nomination archive, we scraped their detail page on \texttt{nobelprize.org}, extracting last name, first name, gender, birth year, and death year from labeled table cells. Scraping was parallelized across available cores in chunks of 500, with partial results checkpointed to disk. Of the 14{,}471 people, 4{,}571 (31.6\%) had birth years recorded; the remaining 9{,}903 (68.4\%) lacked birth year data entirely, rendering them unmatchable through our disambiguation strategy. Six records contained non-standard gender codes in the source database; we verified the identities of all six individuals by first name and confirmed they are male, recoding accordingly. One record had a transposed death year (1886 instead of 1986), which was corrected manually.
+
+In the second stage, for each person with both a name and birth year (4{,}571 matchable individuals), we searched the Wikidata entity search API (limited to 10 candidates per query) and then verified each candidate's birth year via the Wikidata claims API (property P569, date of birth). A match was accepted only when the candidate's Wikidata birth year exactly equaled the birth year recorded in the Nobel archive. We did not attempt fuzzy name matching or approximate year matching, prioritizing precision over recall. This procedure matched 339 of 4{,}571 matchable individuals (7.4\%), representing 2.3\% of all nomination archive people. The low match rate reflects several factors: many early-twentieth-century nominators and nominees lack Wikidata entries; name transliterations between the archive's conventions and Wikidata's labels may differ; and our strict birth-year criterion rejects plausible matches where Wikidata records a different (or no) birth date. Unmatched individuals are represented in the network using temporary identifiers with a \texttt{NOM:} prefix (e.g., \texttt{NOM:7283}), preserving the nomination-layer topology even where cross-layer entity resolution was not possible.
+
+\subsubsection{Demographic Enrichment}
+\label{sec:data-demographics}
+
+We fetched demographic attributes from Wikidata for all individuals with resolved QIDs across all data sources. The SPARQL query retrieved: English name label, gender (P21), country of birth (P19, traversed to sovereign state via P17), nationality (P27), birth date (P569), death date (P570), occupation (P106), and employer/institution (P108). Queries were executed in batches of up to 200 QIDs using the SPARQL \texttt{VALUES} clause, with individual fallback queries for any batch that failed. Multi-valued fields (nationality, occupation, institution) were collapsed into semicolon-delimited strings. Where multiple birth or death dates existed for a single QID (e.g., due to conflicting Wikidata sources), we retained the first non-missing value. After the initial demographic fetch for governing body, vetting body, and laureate QIDs, we performed a second pass to fetch demographics for the 339 matched nomination archive people, then re-collapsed all records to produce a single row per QID.
+
+As a post-processing step, we imputed end-of-service years for RSAS members (who serve for life) using Wikidata death years. Of 2{,}312 RSAS members, 1{,}868 received imputed end years; 444 remain without end years (likely living members or individuals with unknown death dates). The final demographics table contains 7{,}221 unique individuals.
+
+\subsection{Network Construction}
+\label{sec:network-construction}
+
+The final network was assembled from all intermediate data files. Nodes correspond to unique individuals identified by Wikidata QIDs, with demographic attributes from Section~\ref{sec:data-demographics}. Edges are directed and carry metadata for year, prize category, and the layer identities of the source and target nodes. We defined five edge types reflecting the institutional flow of the selection process:
+
+\begin{enumerate}
+    \item \textbf{Governing body $\to$ vetting body.} For each vetting body member, we created edges from all governing body members who were active at the start of the vetting member's service. ``Active'' means the governing body member's start year is at or before the vetting member's start year, and the governing body member's end year (if known) is at or after the vetting member's start year. The edge year is the vetting member's start year.
+
+    \item \textbf{Vetting body $\to$ nominator.} For Chemistry, Physics, and Physiology/Medicine, Nobel Committees solicit nominations from qualified individuals. For each prize-year, we created edges from all active vetting body members to all nominators who submitted nominations that year.
+
+    \item \textbf{Nominator $\to$ nominee.} Direct edges from each nominator to each nominee within a nomination record. For nominations with multiple nominees or nominators, all pairwise combinations were generated. Edges were deduplicated.
+
+    \item \textbf{Governing body $\to$ laureate.} For Chemistry, Physics, Physiology/Medicine, and Literature, we created edges from all governing body members active in the award year to the laureate.
+
+    \item \textbf{Vetting body $\to$ laureate.} For Peace only, the Norwegian Nobel Committee both evaluates nominations and awards the prize. Edges connect active committee members in the award year to the laureate.
+\end{enumerate}
+
+The body-to-prize mappings are: RSAS $\to$ \{Chemistry, Physics\}; Karolinska Institutet $\to$ Physiology/Medicine; Swedish Academy $\to$ Literature; Storting $\to$ Peace. After deduplication, the network contains 7{,}221 nodes and 305{,}199 edges. Edge counts by type are: governing body $\to$ laureate (147{,}965; 48.5\%), vetting body $\to$ nominator (87{,}492; 28.7\%), governing body $\to$ vetting body (42{,}360; 13.9\%), nominator $\to$ nominee (26{,}654; 8.7\%), and vetting body $\to$ laureate (728; 0.2\%). Edge counts by prize are: Physics (121{,}290), Chemistry (111{,}622), Physiology/Medicine (49{,}060), Peace (15{,}853), and Literature (7{,}374). The lower counts for Physiology/Medicine reflect the Karolinska data gap post-1970 and the truncated nomination archive (through 1953 only); the lower count for Literature reflects the smaller Swedish Academy membership (18 seats).
+
+The network contains 220 self-loops arising from individuals who occupy roles in multiple layers simultaneously: 148 governing $\to$ vetting edges where RSAS members also served on Nobel Committees; 44 governing $\to$ laureate edges where RSAS members subsequently won Nobel Prizes (e.g., Svante Arrhenius, Ernest Rutherford); 26 vetting $\to$ nominator edges where committee members also submitted nominations; and 2 nominator $\to$ nominee self-nominations. We retained all self-loops as they reflect genuine structural features of the selection process.
+
+\subsection{Data Quality Assessment}
+\label{sec:diagnostics}
+
+We performed a comprehensive 42-point diagnostic audit of all intermediate and output data files. Table~\ref{tab:diagnostics} summarizes the key results. Below we discuss findings organized by data source and assess the overall fitness of the dataset for network analysis.
+
+\begin{table}[t!]
+\footnotesize
+\centering
+\caption{Summary of data quality diagnostics across all data sources. Checks are classified as passed (no issues) or warning (expected structural limitation or quality note).\label{tab:diagnostics}}
+\bigskip
+\begin{tabular}{lcc}
+\textbf{Category} & \textbf{Checks Passed} & \textbf{Warnings} \\ \hline
+File integrity & 9/9 & 0 \\
+Governing bodies & 8/9 & 1 \\
+Vetting bodies & 4/5 & 1 \\
+Nominations & 3/4 & 1 \\
+Entity resolution & 2/3 & 1 \\
+Laureates & 3/5 & 2 \\
+Demographics & 2/3 & 1 \\
+Network structure & 4/8 & 4 \\ \hline
+\textbf{Total} & \textbf{31/42} & \textbf{11} \\
+\end{tabular}
+\end{table}
+
+\textbf{Governing bodies.} All four governing bodies achieved 100\% QID resolution. All year values fall within plausible historical ranges (1700--2026), and no records have start year exceeding end year (after correction of three RSAS records where death-year imputation produced anomalous end years; these were reverted to missing). Of 2{,}312 RSAS members, 444 (19.2\%) remain without end years after imputation, likely because they are still living or their death dates are not recorded in Wikidata. These members are treated as currently active when determining temporal overlap for edge construction.
+
+\textbf{Vetting bodies.} QID completeness ranges from 81.9\% (Physiology/Medicine, reflecting the acknowledged incompleteness of its Swedish Wikipedia source) to 100\% (Chemistry, Physics, Literature). We cross-validated committee members against their parent governing bodies: 42 of 45 Chemistry committee members and 44 of 50 Physics committee members appear in the RSAS roster. Only 23 of 52 Physiology/Medicine committee members appear in the Karolinska roster, attributable to the Karolinska data covering only 1881--1970 while the committee list extends to 2025.
+
+\textbf{Nominations.} All five prize categories are represented with year ranges matching expectations. All 27{,}932 records have nominee person IDs; 755 (2.7\%) lack nominator person IDs (anonymous or unlisted nominators).
+
+\textbf{Entity resolution.} Of 14{,}474 unique people in the nomination archive, only 339 (2.3\%) were matched to Wikidata QIDs. The primary bottleneck is missing biographical data: 9{,}903 people (68.4\%) lack birth years, making Wikidata disambiguation infeasible. As a consequence, 21.4\% of all edge endpoints in the final network use unresolved \texttt{NOM:} prefix identifiers, and 35.4\% of edges involve at least one such identifier. These edges preserve the nomination-layer topology but cannot be linked to individuals in other layers.
+
+\textbf{Laureates.} All 927 laureate-prize records have QIDs (100\% coverage), and all 919 unique QIDs appear in the nodes file. Of 919 laureates, 267 lack governing body $\to$ laureate edges: 139 are Peace laureates (expected, since Peace uses the vetting $\to$ laureate pathway) and 128 are Physiology/Medicine laureates awarded after 1970 (the Karolinska data gap).
+
+\textbf{Demographics.} The demographics table contains 7{,}221 unique QIDs with no duplicates. Completeness rates are: name 99.8\%, gender 99.5\% (90.3\% male, 9.3\% female), birth country 78.7\%, nationality 97.2\%, birth year 99.5\%, death year 78.2\%, occupation 97.4\%, and institutional affiliation 38.4\%. No records have birth year exceeding death year, and 57 records with birth years prior to 1700 correspond to historically accurate early members of the RSAS (founded 1739) and Storting (founded 1814).
+
+\textbf{Network structure.} No duplicate edges exist. Among edges with resolved QIDs on both endpoints, 4{,}624 nodes are involved, with mean degree 85.3, median degree 13, and maximum degree 1{,}159. A total of 2{,}466 nodes (34.2\%) are isolates; these are predominantly nomination archive people who were matched to Wikidata QIDs (and thus appear in the nodes table) but whose \texttt{NOM:} prefix identifiers in the edge list were not replaced, an artifact of the identifier resolution process rather than a true structural feature.
+
+\subsubsection{Known Structural Gaps}
+\label{sec:gaps}
+
+We document seven structural limitations inherent to the available sources:
+\begin{enumerate}
+    \item \emph{Karolinska Institutet post-1970 gap.} Nobel Assembly membership after 1970 is not publicly available, resulting in missing governing body $\to$ laureate and governing body $\to$ vetting body edges for Physiology/Medicine after 1970.
+
+    \item \emph{Nomination archive 50-year secrecy rule.} Nomination data are available through 1974--1975 for most prizes, but only through 1953 for Physiology/Medicine.
+
+    \item \emph{Physiology/Medicine vetting body incompleteness.} The Swedish Wikipedia source for this committee is self-reportedly incomplete.
+
+    \item \emph{Literature committee extraction fragility.} Committee service years were parsed from a Nuxt.js SPA payload, which may break if the Swedish Academy redesigns its website.
+
+    \item \emph{Low nomination QID match rate.} Only 2.3\% of nomination archive people were matched to Wikidata, primarily because 68.4\% lack birth years.
+
+    \item \emph{RSAS end-year imputation.} 19.2\% of RSAS members lack end years after death-year imputation and are treated as currently active, which may slightly overcount active members in recent years.
+
+    \item \emph{Storting term consolidation.} Non-consecutive Storting terms are preserved, but gaps between terms may not perfectly reflect actual departure and return dates.
+\end{enumerate}
+
+\subsubsection{Fitness for Network Analysis}
+
+Despite these gaps, the dataset is suitable for multilayer network analysis. The governing body and vetting body layers have high completeness (93--100\% QID resolution), and temporal coverage extends from each institution's founding to the present, with the notable exception of Karolinska post-1970. The laureate layer has 100\% QID coverage and spans 1901--2025. The nomination layer, while limited in entity resolution, preserves the full topological structure of nominator--nominee relationships through the \texttt{NOM:} identifier system; analyses that do not require cross-layer linking of nomination-layer individuals can use these edges directly. The primary analytical constraints are: (a)~Physiology/Medicine analyses are limited by the Karolinska gap and the truncated nomination archive; (b)~cross-layer analyses linking nominators or nominees to governing/vetting body members are limited by the 2.3\% QID match rate; and (c)~the 34.2\% isolate node rate is an artifact of identifier resolution rather than a true structural feature. Researchers should consider these constraints when designing analyses, particularly for prize-specific comparisons involving Physiology/Medicine.
 
 \subsection{Network Analysis}
 
