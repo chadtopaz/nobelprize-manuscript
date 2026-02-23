@@ -1,0 +1,227 @@
+\documentclass[11pt]{article}
+
+% Page layout
+\usepackage[margin=1in]{geometry}
+
+% Spacing
+\usepackage{setspace}
+\onehalfspacing
+
+% Encoding and fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Packages
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{threeparttable}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{natbib}
+\usepackage{authblk}
+
+\title{Nobel Prize}
+
+\author[1,2,3,*]{Chad M.\ Topaz}
+\author[2]{Arden Fleuhr}
+\author[1,4]{Jude Higdon}
+\author[2]{Anvi Kurongonayini}
+\author[5]{Ariana Mendible}
+\author[2]{Bennett Ptak}
+\author[6]{Rachel Roca}
+\author[3]{Nancy Rodr\'{i}guez}
+\author[2]{R\'{e}gan Schwartz}
+\author[7]{Lu Xian}
+
+\affil[1]{QSIDE Institute}
+\affil[2]{Williams College}
+\affil[3]{University of Colorado--Boulder}
+\affil[4]{Bennington College}
+\affil[5]{Seattle University}
+\affil[6]{Michigan State University}
+\affil[7]{University of Michigan}
+\affil[*]{Corresponding author: chad.topaz@gmail.com}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We did a project.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+
+Within the academic community, few awards compare in professional and public prestige to the Nobel Prize. Alfred Nobel was a 19th-century scientist and inventor who amassed a fortune from the invention of dynamite and the manufacturing of armaments. Perhaps prompted by his labeling in the press as ``the merchant of death'' \citep{Gol2000}, he endowed the eponymous prizes, meant to honor ``those who, during the preceding year, have conferred the greatest benefit to mankind'' in the areas of chemistry, physics, physiology or medicine, literature, and peace \citep{NobelPrizeWebsiteFull}.
+
+The first Nobel Prizes were awarded in 1901, and as of 2020, there were 962 winners, or \emph{laureates}. The vast majority of these are men \citep{LunJenJau2019} and most express geographic origin in Europe or North America \citep{Fisher2013}. More generally, a substantial body of research identifying the overrepresentation of individuals who are white, men, cisgender, heterosexual, and/or nondisabled has brought into stark relief the degree to which minoritized individuals in certain fields must fight against exclusion in order to participate \citep{TopSen2016, TopKliBer2019, LarTay2020, ACTReport, TopHigEpp2022}. Why might this matter?
+
+Lack of diversity and inclusion through the vertical tiers of an academic or professional field is problematic for several reasons. First, intersectional diversity can create more inclusive and more strategic thinking that compounds into broader diversity and inclusion \citep{exp2021,ACTReport,HunLayPri2015}. Additionally, diverse representation can help ensure that a professional culture and the products that emerge from it, be they physical or digital products, knowledge, services, or anything else, will be designed and executed not only to avoid harm to marginalized individuals but, ideally, to serve as a corrective factor to help address historic inequity \citep{ACTReport,WilMilKas2021}. Finally, there is a huge benefit achieved when individuals from marginalized groups look at high levels of a field and see people with whom they share identity characteristics that contribute to marginalization. When they see more professionally advanced people who have a seat at the table, it bolsters their ability to imagine themselves in such positions in the future and prompts the creation of and works towards ambitious goals \citep{OysBybTer2006, WilMilKas2021}.
+
+\subsection{Previous Work}
+
+An existing body of work has examined Nobel Laureates and their demographics. For example, \citet{BafVam2011} investigate the ages of laureates and \citet{ChaEllRah2011} delve into gender, demonstrating that women laureates are less likely to marry or have children as compared to men. Perhaps unsurprisingly, laureates are overwhelmingly white, male, and affiliated with a university \citep{Cra2001}. Furthermore, many nominees come from only a few countries; for example, between 1901 to 1951, three-quarters of physics nominees came from the US, Britain, Germany, and France, while none came from the continent of Africa \citep{Cra2001}. Laureates enjoy a range of benefits such as more citations of their work, more freedom to focus on their work, increased funding, and global publicity \citep{CasFan2013}. Indeed, \citet{WagHorWhe2015} find that laureates produce fewer papers than matched peers but with higher average citations, and that laureates occupy more central positions in coauthorship networks, suggesting that recognition and network centrality reinforce one another.
+
+Arguably, identifying who has \textit{not} won a Nobel Prize is a richer line of questioning and one that has been around since the prize's conception. In terms of gender biases, the lack of women in STEM fields does not account fully for the low number of female laureates; with strong confidence, women are under-represented \citep{LunJenJau2019}. \citet{ModGilSha2018} trace the long-standing gendered barriers in scientific recognition, documenting how women scientists have historically been excluded from nomination despite demonstrable contributions. The very conditions needed for Nobel Prizes have also excluded and created conflict from its conception. For example, the rule that only three individuals can share a prize for a given advancement erases invaluable work done in collaboration with more scholars. The exclusion of certain collaborators has caused several controversies throughout the years, as listed by \citet{CasFan2013} and \citet{Led2016}. Only living scientists may be awarded a Nobel Prize, which puts the onus on recognizing individuals for their contribution before they are disqualified by death. Several collaborators did not share Nobel Prizes for their contributions for this very reason \citep{CasFan2013}. Beyond gender, \citet{NeiVueVue2024} examine racial and national disparities among laureates in physiology or medicine, finding stark underrepresentation of Black scientists and highlighting persistent gaps in data reporting on ethnicity, gender identity, and disability that limit intersectional analysis.
+
+%human decision-making, different levels
+Nobel prizes are awarded to those ``conferred the greatest benefit on mankind,'' \citep{nobelwill}, but choosing who has made the most important contribution is a subjective and inevitably biased choice that greatly depends on those with direct participation in the process. Depending on the scientists who compose the selection committee (discussed more later), preferences of theoretical or experimental work may account for why scientists with clear support never won a prize \citep{But2016, Cra2001}. Some areas of study were not recognized as sub-fields of the larger categories from the prizes' conception, such as astronomy in physics \citep{CasFan2013}. Further, lack of broad international support, grudges, and previous awards in similar areas of study all affect who wins the award \citep{But2016}. But the committee is not the only way bias can enter the Nobel system. \citet{BafVam2011} highlight this nuance by writing ``if there is a preference for older Nobel candidates, this is introduced during the nomination process.'' \citet{GalDom2019} use network analysis to show that nominations are shaped by homophily, with nominators tending to favor individuals from similar national and institutional backgrounds, and that nominees endorsed by central, prestigious actors are more likely to become laureates. \citet{KoJanYan2024} further demonstrate that national favoritism, or ``particularism,'' pervades the nomination process, with wealthy nations disproportionately nominating their own citizens and political, economic, and colonial factors influencing recommendations independently of scientific merit.
+
+%In 1974, some of the secrecy surrounding the process was alleviated when the Nobel Foundation decided to release information regarding nominees and nominators 50 years after the prize was given. While this information has been invaluable in both the above studies and our work, it is probable that contenders will not be alive to have an understanding of the process. A number of factors are still unknown to the public even after the 50 years. For example,
+
+%using networks
+\citep{MolIniRui2021, HanSch2021, GalDom2019, ChaZhaPan2017, CasFan2013}
+
+%Lu: I'm working on it!
+Papers to discuss might include \citep{ChaFu2021,ChaZhaPan2017,GalDom2019,HanSch2021,LiRouLia2022,MolIniRui2021,Nature2022,NdlMarSha2018,SzeMaSin2018,UrdGre2015,Rod2022}
+
+\subsection{Nobel Prize Selection Process}
+
+Nobel Prize selection processes are complex and opaque. One reason for the lack of clarity is that there appears to be no definitive scholarly source, and indeed no single source at all, with a complete description of these processes. We now aim to fill this surprising gap in the literature. The discussion that follows draws from online sources, namely the websites of the \citet{NobelPrizeWebsiteFull}, the \citet{RSAS}, the \citet{KINA}, and the Wikipedia entry for the Nobel Peace Prize \citep{NPPWiki}.
+
+Table~\ref{Tab1} summarizes relevant actors for the selection of the five Nobel Prizes. Here, we focus on the individuals who wield influence on the process, and so we do not include nominees and laureates in the table. We begin with a general discussion of the various actors and, subsequently, proceed to a more detailed discussion for each specific Nobel Prize.
+
+\newcolumntype{s}{>{\raggedright\arraybackslash} p{0.15\textwidth}}
+\begin{table}[t!]
+\footnotesize
+\begin{threeparttable}
+\caption{Overview of the process for selection of Nobel Laureates. For each Nobel Prize, a governing body chooses from among a group of potential vetters in order to create a vetting body. The vetting body receives nominations made by nominators and creates a short list of viable laureates. The selection body takes the vetting body's input and makes the final choice of laureate.\label{Tab1}}
+\bigskip
+\begin{tabular}{p{0.12\textwidth}sssss}
+               & \bf Chemistry                                          & \bf Physics                                            & \bf Physio/Med                             & \bf Literature                           & \bf Peace                                                      \\ \cline{2-6}
+               &&&&& \\
+\bf Governing Body & Royal Swedish Academy of Sciences                  & Royal Swedish Academy of Sciences                  & Nobel Assembly at Karolinska Institutet               & Swedish Academy                      & Storting\tnote{1}                                                   \\
+&&&&&\\
+\bf Potential Vetters    & Royal Swedish Academy of Sciences                  & Royal Swedish Academy of Sciences                  & Karolinska Institutet                                & Swedish Academy                      & Norwegian politicians\tnote{2} \\
+&&&&&\\
+\bf Vetting Body   & Nobel Committee for Chemistry\tnote{3}                      & Nobel Committee for Physics\tnote{3}                        & Nobel Committee for Physio/Med                & Nobel Committee for Literature\tnote{3}       & Norwegian Nobel Committee                                  \\
+&&&&&\\
+\bf Nominators     & By invitation based on stated eligibility criteria & By invitation based on stated eligibility criteria & By invitation based on stated eligibility criteria & Based on stated eligibility criteria\tnote{4} & Based on stated eligibility criteria                       \\
+&&&&&\\
+\bf Selection Body & Royal Swedish Academy of Sciences                  & Royal Swedish Academy of Sciences                  & Nobel Assembly at Karolinska Institutet                & Swedish Academy                      & Norwegian Nobel Committee \\ \\ \cline{2-6}
+\end{tabular}
+\bigskip
+\begin{tablenotes}
+\item[1] The Storting is the Norwegian parliament.
+\item[2] It is not a formal eligibility requirement to be a politician, nor to be Norwegian. However, the Storting has stated that ``As far as possible, the composition of the Committee is to reflect the relative strengths of the political parties in the Storting.'' Moreover, historically, all members of the committee have indeed been Norwegian.
+\item[3] Five members of the Vetting Body are chosen by the Governing Body, and then several additional members of the Vetting Body are added by the Vetting Body itself; these are called \emph{co-opted} members.
+\item[4] Similar to the Vetting Bodies for Chemistry, Physics, and Physiology/Medicine, the Vetting Body for Literature does send out letters soliciting nominations. However, unlike for those other prizes, for the Literature prize, individuals who meet certain eligibility requirements can nominate even if they did not receive a letter of invitation to do so.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Each prize has a \emph{governing body} that oversees the nomination and selection processes. This governing body chooses from among \emph{potential vetters} to create a \emph{vetting body}. The vetting body is in charge of soliciting and/or receiving nominations. \emph{Nominators} are the individuals who nominate candidates for the different awards.  For three of the five awards, individuals who meet certain criteria can become nominators only by invitation of the vetting body. For the other two awards, \emph{any} individual who meets the stated criteria for eligibility can nominate. After receiving nominations, the vetting body sends out nominee portfolios to experts (who do not appear in the table) for evaluation, assesses the nominees, and suggests a shortlist of possible laureates to the governing body. This \emph{governing body} makes the final selection of laureate(s).
+
+Each specific Nobel Prize selection process has unique nuances. The prizes with the most similar processes are the Nobel Prizes in Chemistry and Physics. The governing body for both awards is the Royal Swedish Academy of Sciences (RSAS), established in 1739 as an independent organization to promote the influence of science across the globe. New members are elected by current members. Today, the RSAS has about 480 Swedish and 175 foreign members, divided by discipline into ten classes. The Nobel Committees for Chemistry and Physics are the vetting bodies, respectively, for the prizes. Each committee is made up of five voting members from the relevant RSAS class. The first task of the vetting body is to send out forms to qualified individuals asking for nominations. Typically, each committee receives 250 - 300 nominations. Eventually, based on externally solicited evaluations and its own deliberations, each committee prepares a report with a list of finalists. During the final selection meeting of the RSAS, all present members of the RSAS discuss the report and vote on a finalists. One to three candidates are selected each year for each prize.
+
+The Nobel Prize in Physiology and Medicine involves different actors. The governing body is the Nobel Assembly at the Karolinska Institutet, which is a medical research institute in Sweden. Since 1984, the Nobel Assembly is composed of 50 members of that institute. The vetting body is the Nobel Committee for Physiology or Medicine and consists of five voting members appointed by the Nobel Assembly from among the Karolinska Institute. The selection body, which chooses the laureate(s), is the Nobel Assembly.
+
+The Nobel Prize in Literature is governed by the Swedish Academy (not to be confused with the RSAS). The Swedish Academy is composed of 18 members who are appointed for life.  The Nobel Committee for Literature, the vetting body, is selected from among the members of the Academy for a three-year term.  While the vetting body sends letters to qualified individuals to solicit nominations, \emph{anyone} who is qualified, as stated by prescribed eligibility criteria, may nominate a candidate. The laureate is selected by the Swedish Academy from among a list of finalists proposed by the Nobel Committee.
+
+Finally, for the Nobel Peace Prize, the \emph{Storting}, or the Norwegian parliament, is the governing body.  The Storting elects members of the Norwegian Nobel Committee, the vetting body, for six-year terms (with potential for re-election).  Unlike the previous prizes discussed, the Norwegian Nobel Committee does not solicit nominations from qualified nominators. Rather, anyone who meets the stated eligibility criteria can nominate. Also, in contrast to the other prizes, the selection body for the Nobel Peace Prize is \emph{not} the same as the governing body. Rather, it is the Norwegian Nobel Committee, which also serves as the vetting body.
+
+This paragraph is a pitch describing our novel contributions.
+
+This paragraph is a brief outline of the rest of our study. In this study, we blah blah blah. Our primary results are as follows.
+
+\section{Methods}
+\label{sec:methods}
+
+\subsection{Network Model}
+\label{sec:networkmodel}
+
+Given the many different actors involved in Nobel Prize selection, and given the ambient hierarchical structure, we adopt a multilayer network modeling framework. In the most fundamental network models, there are nodes that are potentially connected by edges, and there is a single type of each. In other words, the nodes describe a single set of entities and the edges represent a single type of relationship between them. However, some modeling situations might instead suggest the use of multiple types of nodes and different levels of connections. These networks are called multilayer networks. See \citet{KivAreBar2014} for a comprehensive introduction, including many applications and examples.
+
+To begin proposing a network model, we revisit Table~\ref{Tab1}. As previously described, this table outlines five different categories of actors who potentially influence the final choice of Nobel Laureates. We have two simplifications. First, in our model, we will ignore potential vetters. While potential vetters can be described for some of the prizes, it is not practical to tabulate the set of all Norwegian politicians, which would be necessary for the Nobel Peace Prize. Moreover, for the other four prizes, the potential vetters are either identical to or a superset of the governing body. The second simplification comes from the observation that the selection body is identical to a body at a higher stage of the hierarchy. For the chemistry, physics, physiology/medicine, and literature prizes, the selection body is the same as the governing body. For the Nobel Peace Prize, the selection body is the same as the vetting body. Therefore, we do not include the selection body in our model.
+
+In summary of what we have outlined thus far, we will include in our model three of the bodies in Table~\ref{Tab1}, namely the governing body, the vetting body, and the nominators. In addition, we will include two groups who represent the eventual result of decisions made by the three aforementioned bodies, namely, nominees and laureates. Thus, our model will describe the governing body, the vetting body, nominators, nominees, and laureates for each of the Nobel Prizes. We will place these in a five-layer network with the governing body at the top and the laureates at the bottom. Fig.~\ref{Fig1} provides a schematic view.
+
+\begin{figure*}[t!]
+\includegraphics[width=\textwidth]{Fig1.png}
+\caption{Multilayer network modeling framework for Nobel Prize selection. These are minimal schematic diagrams that include only a small subset of nodes and a small subset of the edges that actually exist between those nodes. More complete visualizations appear in Sec.~\ref{sec:results}. Left: Schematic of the five layers of our network as described in Sec.~\ref{sec:networkmodel}, namely, governing body, vetting body, nominators, nominees, and laureates. Nodes represent individuals and directed edges indicate decision-making power. That is to say, an edge pointing from person A to person B indicates that A was one of the people responsible for selecting B. The schematic at right is a (partial) example of the Nobel Prize in Physics from 1958. For the physics prize, the governing body is the Royal Swedish Academy of Sciences and the vetting body is the Nobel Committee for Physics; see Table~\ref{Tab1}.\label{Fig1}}
+\end{figure*}
+
+In constructing the prize selection network, we must keep in mind the various complexities of data. For instance, trivially, any laureate must also appear as a nominee. But beyond that, individuals may serve in multiple other roles, potentially in different years and for different prizes. For example:
+\begin{itemize}
+\item Willem Einthoven won the Nobel Prize in Physiology or Medicine in 1924 and nominated others for that same prize in 1901, 1905, 1917, and 1921.
+\item Marie Curie was nominated for the Nobel Prize in Physics in 1902 and 1903, winning it in the latter year. She nominated other individuals for this prize in 1905 and 1910. Additionally, she was nominated for the Nobel Prize in Chemistry in 1911 and won it.
+\item Bj{\o}rnstjerne Bj{\o}rnson was one of the original members of the Nobel Peace Prize vetting/selection body, the Norwegian Nobel Committee, from 1901 through 1906. He nominated other individuals for that prize in 1902, 1903, and 1907.  He himself was nominated for the Nobel Prize in Literature in 1902 and 1903, winning it during the second year.
+\end{itemize}
+
+To capture complexities like the aforementioned ones, we keep track of our data in the following manner. We represent each unique individual as a node. We attach to that node any personal demographics that are not directly tied to prize selection, such as gender, nationality, and so forth. Then, we apply edges to capture the roles of these individuals across prizes and across time. More specifically, each edge carries with it not just the specification of two nodes, but also a year, a Nobel Prize, and two network layers. For example, take the case of Marie Curie above. One of Curie's nominators for the Chemistry Prize in 1911 was Gaston Darboux. Therefore, our network has a directed edge pointing from Darboux to Curie. That edge specifies the year 1911, the field of chemistry, and the two network layers of nominators and nominees. Since Curie nominated Joseph Thomson for the Nobel Prize in Physics in 1905, the network has an edge pointing from Curie to Thomson. That edge specifies the year 1905, the field of physics, and, again, the two network layers of nominators and nominees.
+
+\subsection{Data Acquisition}
+
+There is no single source from which one can obtain all of the data necessary to construct the network model. We will gather the necessary data for the five layers from a variety of sources, summarized in Table~\ref{tab2}. While information about governing/selection bodies, vetting bodies, and laureates is available up through the present day, information about nominators and their nominees is made public only 50 years after the fact. Therefore, our study is by necessity limited to the time period 1901 (when the first Nobel Prizes were given) through 1970.
+
+There are two steps to assembling the data. Our custom code for both stages of data collection is available in a GitHub repository for reproducibility \citep{nobelgithub}. First, we must determine the names of the individuals in each network layer. Then we must determine the relevant characteristics of those individuals, such as personal demographics. For the first step, we use the sources listed in the final column of Table~\ref{tab2}. For the second step, we use Wikidata \citep{wikidata}. Wikidata is a structured open knowledge database that, among other roles it plays, sits behind many Wikipedia pages. By using Wikidata as our source for characteristics of individuals in our database, we are implicitly adopting the choices made by its contributors. As merely one example, we ourselves do not weigh in with inferences of individuals' gender; we use the gender data vetted by Wikidata, recognizing that any demographic data that is not self-identified is imperfect.
+
+\textbf{Royal Swedish Academy of Sciences (RSAS).} From the RSAS's Swedish Wikipedia page, we gather historical data on members, including their names, years of induction, and individual Wikipedia page links. Using these links, we obtain each member's Wikidata ID (qid). Through these qids, we access Wikidata to fetch additional details: the year of death (indicating the end of lifelong membership), gender, birth country, and nationality.
+
+\textbf{Swedish Academy.} We harvest all information about the Swedish Academy directly from Wikidata. We acquire the same pieces of information as above, namely, qid, name, gender, birth country, and nationality, as well as the year of induction and year of death.
+
+\textbf{Storting.} We harvest all information about the Storting directly from Wikidata. We acquire qid, name, gender, birth country, and nationality, as well as the years of each individual's term in the body. Some individuals served multiple terms, sometimes disconnected in time, and hence have multiple observations in the data.
+
+\textbf{Karolinska Institutet.} Members of the selection body for the Prize in Physiology or Medicine, prior to 1984, include all full professors of the Karolinska Institute. We manually collected information about faculty at this medical institute by using archives from Project Runeberg. Specifically, Sweden's State Calendar was published at regular intervals and contains rosters of public employees listed by organization and role. A complete roster of full professors can be found for each year the calendar is published. Within the faculty description, there is also a year of birth, year of medical school graduation, and year joining the institute, along with promotion year if applicable. Professor emerita are also named, giving an end year for participation. Fourteen editions of the state calendar spanning 1881-1970 were manually mined for name, start year and end year. Separately, Wikidata qids were searched and connected to each individual, checking that biographical information matched or was plausible. Further information was referenced as needed from the individual's biography within the same state calendar.
+
+\begin{table}[t!]
+\begin{tabular}{lll}
+\textbf{Network Layer(s)}     & \textbf{Body}                       & \textbf{Source}                                                                                                                                    \\ \hline
+                              &                                     &                                                                                                                                                    \\
+Governing Body/Selection Body & Royal Swedish Academy of Sciences   &  \citet{wikidata}   \\
+                              & Karolinska Institutet               &   \citet{KarolinskaEmployees}             \\
+                              & Swedish Academy                     &  \citet{Ledamotsregister}                 \\
+                              & Storting                            & \citet{wikidata}                          \\
+                              &                                     &                                                                                                                                                    \\
+Vetting Body                  & Nobel Committee for Chemistry       & \citet{NobelCommitteeChemistry}  \\
+                              & Nobel Committee for Physics         &  \citet{NobelCommitteePhysics}   \\
+                              & Nobel Committee for Physio/Med &  \citet{NobelCommitteePhysiology}             \\
+                              & Nobel Committee for Literature      &   \citet{Ledamotsregister}              \\
+                              & Norwegian Nobel Committee           &  \citet{NorwegianNobelCommittee}                  \\
+                              &                                     &                                                                                                                                                    \\
+Nominators                    &                                     & \citet{NobelPrizeWebsite}                                                  \\
+                              &                                     &                                                                                                                                                    \\
+Nominees                      &                                     & \citet{NobelPrizeWebsite}                                               \\
+                              &                                     &                                                                                                                                                    \\
+Laureates                     &                                     & \citet{wikidata}                                                                                                                                           \\ \hline
+\end{tabular}
+\caption{Sources for the data in each network layer.\label{tab2}}
+\end{table}
+
+\subsection{Final Data Set}
+
+Description of exactly what data we have. Needs to include number of nodes, number of edges of each type, what attributes do we have for edges, what attributes do we have for nodes.
+
+Data is available in a GitHub.
+
+\subsection{Network Analysis}
+
+To do our analysis we use the \texttt{multinet} package in R \citep{MagRosVeg2021}.
+
+Some possibly useful links:
+\begin{itemize}
+	\item \url{https://www.nature.com/articles/s41598-020-72626-y}
+	\item \url{https://link.springer.com/article/10.1007/s10618-020-00716-6}
+	\item \url{https://www.frontiersin.org/articles/10.3389/fnsys.2021.624183/full}
+	\item \url{https://search.r-project.org/CRAN/refmans/multinet/html/Communities.html}
+	\item \url{https://cs.paperswithcode.com/paper/community-detection-with-node-attributes-in#code}
+	\item \url{https://paperswithcode.com/search?q_meta=&q_type=&q=community+detection+multilayer+}
+\end{itemize}
+
+\section{Results}
+\label{sec:results}
+
+\section{Discussion and Conclusions}
+\label{sec:discussionandconclusions}
+
+\bibliographystyle{plainnat}
+\bibliography{bibliography}
+
+\section*{Acknowledgments}
+
+We are grateful to the Institute for Computational and Experimental Research in Mathematics (ICERM) where this project was begun as part of a program on Data Science and Social Justice.
+
+\end{document}
