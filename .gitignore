@@ -7,3 +7,6 @@
 *.synctex.gz
 *.fls
 *.fdb_latexmk
+
+# Ignore compiled manuscript PDF but track figure PDFs
+/main.pdf
