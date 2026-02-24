@@ -38,22 +38,24 @@
 % Citation style
 \usepackage{scicite}
 
-% URL support
+% URL support with line breaking
 \usepackage{url}
+\usepackage[hyphens]{xurl}
 
 %%%%%%%%%%%%%%%% TITLE AND AUTHORS %%%%%%%%%%%%%%%%
 
 \def\scititle{Geographic Homophily in the Nobel Prize Selection Network}
 \title{\bfseries \boldmath \scititle}
 
-\author{Chad M.\ Topaz$^{1,2,3,\ast}$,
+\author{%
+Chad M.\ Topaz$^{1,2,3,\ast}$,
 Arden Fleuhr$^{2}$,
 Jude Higdon$^{1,4}$,
-Anvi Kurongonayini$^{2}$,
+Anvi Kurongonayini$^{2}$,\\
 Ariana Mendible$^{5}$,
 Bennett Ptak$^{2}$,
 Rachel Roca$^{6}$,
-Nancy Rodr\'{i}guez$^{3}$,
+Nancy Rodr\'{i}guez$^{3}$,\\
 R\'{e}gan Schwartz$^{2}$,
 Lu Xian$^{7}$\\[10pt]
 \normalsize $^{1}$QSIDE Institute.
@@ -61,8 +63,8 @@ $^{2}$Williams College.
 $^{3}$University of Colorado--Boulder.\\
 \normalsize $^{4}$Bennington College.
 $^{5}$Seattle University.
-$^{6}$Michigan State University.
-$^{7}$University of Michigan.\\[4pt]
+$^{6}$Michigan State University.\\
+\normalsize $^{7}$University of Michigan.\\[4pt]
 \small $^\ast$Corresponding author. Email: chad.topaz@gmail.com
 }
 
@@ -215,7 +217,7 @@ We are grateful to Atilio Barreda, William Bork Rodriguez, Drew Lewis, Jessica L
 
 \paragraph*{Competing interests:} The authors declare no competing interests.
 
-\paragraph*{Data and materials availability:} All data and code are publicly available at https://github.com/qsideinstitute/nobelprize \cite{nobelgithub}.
+\paragraph*{Data and materials availability:} All data and code are publicly available at \url{https://github.com/qsideinstitute/nobelprize} \cite{nobelgithub}.
 
 \subsection*{Supplementary materials}
 Materials and Methods\\
