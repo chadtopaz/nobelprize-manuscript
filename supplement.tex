@@ -81,20 +81,9 @@ Lu Xian$^{7}$\\[6pt]
 
 \subsubsection*{Network Model}
 
-Given the many different actors involved in Nobel Prize selection, and given the ambient hierarchical structure, we adopt a multilayer network modeling framework. In the most fundamental network models, there are nodes that are potentially connected by edges, and there is a single type of each. In other words, the nodes describe a single set of entities and the edges represent a single type of relationship between them. However, some modeling situations might instead suggest the use of multiple types of nodes and different levels of connections. These networks are called multilayer networks. See Kivel\"a et al.\ \cite{KivAreBar2014} for a comprehensive introduction, including many applications and examples.
+We adopt a multilayer network framework \cite{Kivela2014} to represent the hierarchical Nobel Prize selection process. The full selection pipeline involves six categories of actors (see Table~\ref{tab:selection_process} in the Supplementary Text); we retain five in our model. We exclude potential vetters (impractical to enumerate for the Peace Prize, and identical to or a superset of the governing body for the other four prizes) and the selection body (identical to the governing body for four prizes, and to the vetting body for Peace). The five layers in our model are thus: governing body, vetting body, nominators, nominees, and laureates.
 
-To begin proposing a network model, we revisit the table in the Supplementary Text below. As previously described, this table outlines five different categories of actors who potentially influence the final choice of Nobel Laureates. We have two simplifications. First, in our model, we will ignore potential vetters. While potential vetters can be described for some of the prizes, it is not practical to tabulate the set of all Norwegian politicians, which would be necessary for the Nobel Peace Prize. Moreover, for the other four prizes, the potential vetters are either identical to or a superset of the governing body. The second simplification comes from the observation that the selection body is identical to a body at a higher stage of the hierarchy. For the chemistry, physics, physiology/medicine, and literature prizes, the selection body is the same as the governing body. For the Nobel Peace Prize, the selection body is the same as the vetting body. Therefore, we do not include the selection body in our model.
-
-In summary of what we have outlined thus far, we will include in our model three of the bodies described, namely the governing body, the vetting body, and the nominators. In addition, we will include two groups who represent the eventual result of decisions made by the three aforementioned bodies, namely, nominees and laureates. Thus, our model will describe the governing body, the vetting body, nominators, nominees, and laureates for each of the Nobel Prizes. We will place these in a five-layer network with the governing body at the top and the laureates at the bottom.
-
-In constructing the prize selection network, we must keep in mind the various complexities of data. For instance, trivially, any laureate must also appear as a nominee. But beyond that, individuals may serve in multiple other roles, potentially in different years and for different prizes. For example:
-\begin{itemize}
-\item Willem Einthoven won the Nobel Prize in Physiology or Medicine in 1924 and nominated others for that same prize in 1901, 1905, 1917, and 1921.
-\item Marie Curie was nominated for the Nobel Prize in Physics in 1902 and 1903, winning it in the latter year. She nominated other individuals for this prize in 1905 and 1910. Additionally, she was nominated for the Nobel Prize in Chemistry in 1911 and won it.
-\item Bj{\o}rnstjerne Bj{\o}rnson was one of the original members of the Nobel Peace Prize vetting/selection body, the Norwegian Nobel Committee, from 1901 through 1906. He nominated other individuals for that prize in 1902, 1903, and 1907. He himself was nominated for the Nobel Prize in Literature in 1902 and 1903, winning it during the second year.
-\end{itemize}
-
-To capture complexities like the aforementioned ones, we keep track of our data in the following manner. We represent each unique individual as a node. We attach to that node any personal demographics that are not directly tied to prize selection, such as gender, nationality, and so forth. Then, we apply edges to capture the roles of these individuals across prizes and across time. More specifically, each edge carries with it not just the specification of two nodes, but also a year, a Nobel Prize, and two network layers. For example, take the case of Marie Curie above. One of Curie's nominators for the Chemistry Prize in 1911 was Gaston Darboux. Therefore, our network has a directed edge pointing from Darboux to Curie. That edge specifies the year 1911, the field of chemistry, and the two network layers of nominators and nominees. Since Curie nominated Joseph Thomson for the Nobel Prize in Physics in 1905, the network has an edge pointing from Curie to Thomson. That edge specifies the year 1905, the field of physics, and, again, the two network layers of nominators and nominees.
+Each unique individual is represented as a single node carrying demographic attributes (gender, nationality, etc.). Individuals may appear in multiple layers, across prizes, and across years. For example, Marie Curie was a Physics nominee (1902--1903), a Physics nominator (1905, 1910), and a Chemistry nominee and laureate (1911). Edges are directed and carry metadata: the two connected nodes, the year, the prize category, and the source and target layers. Thus, the directed edge from Gaston Darboux to Curie specifies 1911, Chemistry, and the nominator $\to$ nominee layer pair.
 
 \subsubsection*{Data Acquisition}
 
@@ -284,7 +273,7 @@ We document seven structural limitations inherent to the available sources:
 
 \paragraph*{Fitness for Network Analysis.}
 
-Despite these gaps, the dataset is suitable for multilayer network analysis. The governing body and vetting body layers have high completeness (93--100\% QID resolution), and temporal coverage extends from each institution's founding to the present, with the notable exception of Karolinska post-1970. The laureate layer has 100\% QID coverage and spans 1901--2025. The nomination layer achieves 86.5\% entity resolution among matchable individuals and preserves the full topological structure of nominator--nominee relationships through the \texttt{NOM:} identifier system; analyses that do not require cross-layer linking of nomination-layer individuals can use these edges directly. The nomination detail pages additionally provide per-nomination contextual data --- country (94.7--97.7\% complete), city (71.9--78.4\%), profession (73.6--76.8\%), and university (42.1--45.2\%) --- that can support geographic and institutional analyses even for individuals without resolved Wikidata QIDs. The primary analytical constraints are: (a)~Physiology/Medicine analyses are limited by the Karolinska gap and the truncated nomination archive; (b)~cross-layer analyses linking nominators or nominees to governing/vetting body members are limited to the 27.3\% of nomination archive people with resolved QIDs (68.4\% lack the birth year data necessary for disambiguation); and (c)~the 5.1\% isolate node rate is an artifact of identifier resolution rather than a true structural feature, arising from matched individuals whose edges still reference their unresolved \texttt{NOM:} identifiers. Researchers should consider these constraints when designing analyses, particularly for prize-specific comparisons involving Physiology/Medicine.
+Despite these gaps, the dataset is suitable for multilayer network analysis. The governing body and vetting body layers have high completeness (93--100\% QID resolution), and temporal coverage extends from each institution's founding to the present, with the notable exception of Karolinska post-1970. The laureate layer has 100\% QID coverage and spans 1901--2025. The nomination layer achieves 86.5\% entity resolution among matchable individuals and preserves the full structure of nominator--nominee relationships through the \texttt{NOM:} identifier system; analyses that do not require cross-layer linking of nomination-layer individuals can use these edges directly. The nomination detail pages additionally provide per-nomination contextual data --- country (94.7--97.7\% complete), city (71.9--78.4\%), profession (73.6--76.8\%), and university (42.1--45.2\%) --- that can support geographic and institutional analyses even for individuals without resolved Wikidata QIDs. The primary analytical constraints are: (a)~Physiology/Medicine analyses are limited by the Karolinska gap and the truncated nomination archive; (b)~cross-layer analyses linking nominators or nominees to governing/vetting body members are limited to the 27.3\% of nomination archive people with resolved QIDs (68.4\% lack the birth year data necessary for disambiguation); and (c)~the 5.1\% isolate node rate is an artifact of identifier resolution rather than a true structural feature, arising from matched individuals whose edges still reference their unresolved \texttt{NOM:} identifiers. Researchers should consider these constraints when designing analyses, particularly for prize-specific comparisons involving Physiology/Medicine.
 
 \subsubsection*{Network Analysis}
 
@@ -294,7 +283,9 @@ Our analysis centers on geographic homophily: the tendency for connected individ
 
 For a given set of directed edges, let $f_i$ denote the fraction of source nodes from geographic category $i$ and $t_i$ the fraction of target nodes from category $i$. Under independent (random) pairing, the expected rate of same-category edges is $E = \sum_i f_i \cdot t_i$. The observed rate $O$ is the fraction of edges for which the source and target share a geographic category. The \emph{homophily ratio} is $H = O / E$. A ratio of 1 indicates that geographic matching occurs at the rate expected under random pairing; ratios greater than 1 indicate excess same-geography matching (homophily); ratios less than 1 indicate heterophily.
 
-For the nominator $\to$ nominee edge type, we compute homophily directly from the nomination archive, which provides per-nomination geographic fields for both nominators and nominees at 94.7--97.7\% completeness. This allows us to use all 25,844 nomination edges with non-missing geography, rather than restricting to the 8,119 edges with resolved Wikidata QIDs on both endpoints. We report results for both the full and QID-matched subsets as a robustness check.
+An important distinction arises from the two geographic data sources. The nomination archive records the country of professional activity for each nominator and nominee at the time of each nomination (e.g., Enrico Fermi appears as ``Italy'' in 1935--1938 nominations and ``United States'' in post-1939 nominations, reflecting his emigration). For all other edge types, geographic attributes come from Wikidata, which records birth country. The primary homophily analysis for the nominator $\to$ nominee edge therefore measures sorting by professional affiliation, while the institutional-layer analyses measure sorting by birth country.
+
+For the nominator $\to$ nominee edge type, we compute homophily directly from the nomination archive, which provides per-nomination geographic fields for both nominators and nominees at 94.7--97.7\% completeness. This allows us to use all 25,844 nomination edges with non-missing geography, rather than restricting to the 8,119 edges with resolved Wikidata QIDs on both endpoints. As a robustness check, we re-estimate nominator $\to$ nominee homophily using birth country from Wikidata for the QID-matched subset; results are reported alongside the full-data estimates in table~S4.
 
 \paragraph*{Permutation Tests.}
 
@@ -303,6 +294,10 @@ We assess statistical significance using permutation tests with $N = 1,000$ rand
 \paragraph*{Diversity Metrics.}
 
 To characterize the geographic composition of each network layer, we compute the \emph{effective number of categories} as $\exp(-\sum_i p_i \log p_i)$, where $p_i$ is the proportion of individuals in geographic category $i$. This is the exponential of Shannon entropy and gives the equivalent number of equally represented categories. A value of 1 indicates perfect concentration in a single category; higher values indicate greater diversity.
+
+\paragraph*{Prize-Specific Temporal Tests.}
+
+In addition to the aggregate temporal analysis, we repeated the decade-by-decade permutation tests within each prize category separately (500 permutations per cell). All five prizes show rising continent-level homophily ratios across the study period. Chemistry rises from 1.05 (1900s) to 1.53 (1970s); Physics from 1.06 to 1.36; Physiology/Medicine from 1.06 to 1.45 (through the 1950s, the last decade with available data); Literature from 1.10 to 1.42; and Peace from 1.09 to 1.40. These prize-specific results confirm that the globalization paradox is not an artifact of compositional shifts across prize categories; the pattern holds within each discipline individually.
 
 \paragraph*{Nomination Flow Asymmetry.}
 
@@ -362,7 +357,7 @@ Finally, for the Nobel Peace Prize, the \emph{Storting}, or the Norwegian parlia
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{Figures/fig4_flow_asymmetry.pdf}
+\includegraphics[width=\textwidth]{Figures/fig5_flow_asymmetry.pdf}
 \caption{\textbf{Return ratios (nominations received / nominations sent) by UN subregion.} Red bars indicate net importers of recognition (ratio $> 1$); blue bars indicate net exporters. Northern America is the largest net importer; Northern Europe, which houses the Nobel Prize institutions, is the largest net exporter.\label{fig:flow}}
 \end{figure}
 
@@ -380,14 +375,12 @@ Finally, for the Nobel Peace Prize, the \emph{Storting}, or the Norwegian parlia
 Edge type & Scale & $N$ & Obs. & Exp. & Ratio & $p$ \\
 \hline
 Nominator $\rightarrow$ Nominee & continent & 25,844 & 79.3\% & 58.0\% & 1.37 & $<$0.001 \\
-Nominator $\rightarrow$ Nominee & continent & 8,119 & 74.0\% & 62.7\% & 1.18 & $<$0.001 \\
 Nominator $\rightarrow$ Nominee (QID subset) & continent & 8,119 & 74.0\% & 62.7\% & 1.18 & $<$0.001 \\
 Governing $\rightarrow$ Laureate & continent & 96,506 & 50.6\% & 50.3\% & 1.01 & $<$0.001 \\
 Governing $\rightarrow$ Vetting & continent & 20,083 & 95.2\% & 95.2\% & 1.00 & 1.000 \\
 Vetting $\rightarrow$ Nominator & continent & 25,811 & 78.4\% & 78.4\% & 1.00 & 1.000 \\
 Vetting $\rightarrow$ Laureate & continent & 529 & 48.6\% & 48.6\% & 1.00 & 1.000 \\
 Nominator $\rightarrow$ Nominee & country & 25,844 & 46.8\% & 9.6\% & 4.85 & $<$0.001 \\
-Nominator $\rightarrow$ Nominee & country & 8,119 & 32.1\% & 8.4\% & 3.82 & $<$0.001 \\
 Nominator $\rightarrow$ Nominee (QID subset) & country & 8,119 & 32.1\% & 8.4\% & 3.82 & $<$0.001 \\
 Governing $\rightarrow$ Vetting & country & 20,083 & 72.4\% & 37.3\% & 1.94 & $<$0.001 \\
 Governing $\rightarrow$ Laureate & country & 96,506 & 4.4\% & 4.2\% & 1.06 & $<$0.001 \\
