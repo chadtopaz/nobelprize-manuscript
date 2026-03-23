@@ -305,7 +305,7 @@ Because the same nominators appear across multiple years, edges are not fully in
 
 \paragraph*{Supra-Adjacency Assortativity.}
 
-To characterize the system-wide geographic structure, we compute Newman's assortativity coefficient $r$ on the full supra-adjacency matrix (all edge types combined into a single directed graph), using birth country from Wikidata for all nodes to ensure a consistent geographic definition. At the country level, the full-network assortativity is $r = 0.19$, compared to $r = 0.26$ for nomination edges alone and $r = 0.19$ for institutional edges alone. The full-network value is pulled toward the institutional value because institutional edges outnumber nomination edges approximately 40:1. At the continent level, the contrast is sharper: nomination edges yield $r = 0.30$, institutional edges $r = 0.02$, and the full network $r = 0.03$. Individual institutional edge types show near-zero assortativity (governing body $\to$ laureate: $r = 0.003$; vetting body $\to$ nominator: $r = 0.001$; vetting body $\to$ laureate: $r = 0.000$), with the exception of governing body $\to$ vetting body ($r = 0.43$), which reflects the pooling of prize-awarding institutions discussed in the main text.
+To characterize the system-wide geographic structure, we compute Newman's assortativity coefficient $r$ on the full supra-adjacency matrix (all edge types combined into a single directed graph), using birth country from Wikidata for all nodes to ensure a consistent geographic definition. At the country level, the full-network assortativity is $r = 0.19$, compared to $r = 0.26$ for nomination edges alone and $r = 0.19$ for institutional edges alone. The full-network value is pulled toward the institutional value because institutional edges outnumber nomination edges approximately 40:1. At the continent level, the contrast is sharper: nomination edges yield $r = 0.30$, institutional edges $r = 0.02$, and the full network $r = 0.03$. Individual institutional edge types show near-zero assortativity (governing body $\to$ laureate: $r = 0.003$; vetting body $\to$ nominator: $r = 0.001$; vetting body $\to$ laureate: $r = 0.000$), with the exception of governing body $\to$ vetting body ($r = 0.43$), which reflects the pooling of prize-awarding institutions: the RSAS serves both Chemistry and Physics, so pooling across these prizes inflates apparent same-country matching.
 
 \paragraph*{Layer-Contrast Permutation Test.}
 
@@ -321,7 +321,7 @@ We compute three worst-case sensitivity bounds on the primary finding ($H = 4.85
 
 \paragraph*{Diversity Metrics.}
 
-To characterize layer composition, we compute the \emph{effective number of categories} as $\exp(-\sum_i p_i \log p_i)$, the exponential of Shannon entropy. This gives the equivalent number of equally represented categories: 1 indicates perfect concentration; higher values indicate greater diversity.
+To characterize layer composition, we compute the \emph{effective number of categories} as $\exp(-\sum_i p_i \log p_i)$, the exponential of Shannon entropy. This gives the equivalent number of equally represented categories: 1 indicates perfect concentration; higher values indicate greater diversity. At the country level, 84.7\% of governing body members and 96.3\% of vetting body members were born in Sweden, Norway, or Denmark, confirming the Scandinavian concentration of the institutional layers.
 
 \paragraph*{Prize-Specific Temporal Tests.}
 
@@ -330,6 +330,22 @@ We repeated decade-by-decade permutation tests within each prize category separa
 \paragraph*{Nomination Flow Asymmetry.}
 
 To characterize directional asymmetry, we compute for each UN subregion the number of nominations sent (as nominator origin) and received (as nominee origin). The \emph{return ratio} is nominations received divided by sent. Ratios above 1 identify net importers of recognition; below 1, net exporters.
+
+\paragraph*{Laureate Prediction Analysis.}
+
+We tested whether same-country nominations are more likely to identify eventual laureates. Using the nomination archive with complete nominator and nominee geography, we computed for each nominee--prize pair the fraction of nominations received from same-country nominators. Nominees were classified as laureates or non-laureates by matching nominee QIDs to the laureate roster. At the nominee level, laureates received a lower mean fraction of same-country nominations (37.0\%) than non-laureates (52.7\%). To assess significance, we ran a permutation test (10,000 iterations) shuffling laureate labels among nominees; the observed difference exceeded all permuted values ($p < 0.001$). We also fit a logistic regression predicting laureate status from same-country nomination fraction, controlling for log total nomination count:
+\[
+\text{logit}(\Pr[\text{laureate}]) = \beta_0 + \beta_1 \cdot \text{same\_country\_frac} + \beta_2 \cdot \log(\text{total\_nominations}).
+\]
+The coefficient on same-country fraction was $\hat{\beta}_1 = -1.08$ (SE $= 0.14$, $z = -7.74$), corresponding to an odds ratio of 0.34; each unit increase in same-country nomination fraction is associated with a 66\% decrease in the odds of laureate status. The pattern holds within each of the five prize categories.
+
+\paragraph*{Nominator Heterogeneity.}
+
+To characterize individual variation in geographic homophily, we computed per-nominator same-country nomination rates for all nominators with at least two nominations in the archive (ensuring a non-degenerate rate). We compared Scandinavian nominators (those from Sweden, Norway, or Denmark) to non-Scandinavian nominators. Scandinavian nominators exhibited a mean same-country rate of 22.2\%, compared to 51.4\% for non-Scandinavian nominators. This finding provides individual-level confirmation that the institutional core of the Nobel system---housed in Scandinavia---is not the source of geographic sorting.
+
+\paragraph*{Temporal Trend Tests.}
+
+We tested the temporal trend in continent-level homophily using linear and piecewise regression on the eight decade-level homophily ratios from Table~\ref{tab:temporal_homophily}. A piecewise decomposition around the 1940s, motivated by the observed inflection at World War II, showed a statistically significant rise from the 1900s through the 1940s ($t = 7.84$) followed by a non-significant decline through the 1970s, consistent with a plateau. A full linear model over all decades showed a significant overall upward trend. These tests confirm that the temporal pattern described in the main text---rising homophily followed by persistence---is statistically robust.
 
 \clearpage
 
@@ -412,7 +428,7 @@ Nominator $\rightarrow$ Nominee & country & 25,844 & 46.8\% & 9.6\% & 4.85 & $<$
 Nominator $\rightarrow$ Nominee (QID subset) & country & 8,119 & 32.1\% & 8.4\% & 3.82 & $<$0.001 \\
 Governing $\rightarrow$ Vetting & country & 197,756 & 65.5\% & 39.7\% & 1.65 & $<$0.001 \\
 Governing $\rightarrow$ Laureate & country & 96,506 & 4.4\% & 4.2\% & 1.06 & $<$0.001 \\
-Vetting $\rightarrow$ Nominator & country & 25,811 & 5.5\% & 5.4\% & 1.01 & 0.064 \\
+Vetting $\rightarrow$ Nominator & country & 25,811 & 5.5\% & 5.4\% & 1.01 & 0.069 \\
 Vetting $\rightarrow$ Laureate & country & 529 & 1.7\% & 1.7\% & 1.00 & 1.000 \\
 Nominator $\rightarrow$ Nominee & subregion & 25,844 & 60.8\% & 24.9\% & 2.44 & $<$0.001 \\
 \hline
