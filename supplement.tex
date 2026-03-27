@@ -476,7 +476,9 @@ Laureates (1901--1975) & 452 & 3.4 & 70.2 & 2.29 & 5.97 \\
 \end{tabular}
 \end{table}
 
-\bibliographystyle{sciencemag}
-\bibliography{bibliography}
+% Use pre-built .bbl from combined.tex to ensure unified reference numbering.
+% Do NOT use \bibliography{} here — Overleaf would rerun BibTeX and overwrite
+% the manually provided supplement.bbl with independent numbering.
+\input{supplement.bbl}
 
 \end{document}
