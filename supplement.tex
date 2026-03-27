@@ -287,7 +287,7 @@ The full network comprises 8,134 nodes and 514,111 directed edges, yielding a de
 
 \paragraph*{Homophily Ratio.}
 
-For a given set of directed edges, let $f_i$ denote the fraction of source \emph{edge endpoints} from geographic category $i$ and $t_i$ the fraction of target endpoints from category $i$ (computed over the edge list, not unique nodes, so individuals contributing more edges receive proportionally more weight). Under independent pairing, the expected same-category rate is $E = \sum_i f_i \cdot t_i$. The observed rate $O$ is the fraction of edges whose source and target share a category. The \emph{homophily ratio} $H = O / E$ equals 1 under geographic neutrality; values above 1 indicate homophily, below 1 heterophily. As a complementary measure, Newman's assortativity coefficient \cite{New2003} $r = \frac{\sum_i e_{ii} - \sum_i a_i b_i}{1 - \sum_i a_i b_i}$, where $e_{ii}$ is the fraction of edges connecting same-category nodes, and $a_i$ and $b_i$ are the fractions of edge endpoints originating from and terminating in category $i$. For the primary nominator $\to$ nominee edge at the country level, $r = 0.41$, confirming strong geographic sorting.
+For a given set of directed edges, let $f_i$ denote the fraction of source \emph{edge endpoints} from geographic category $i$ and $t_i$ the fraction of target endpoints from category $i$ (computed over the edge list, not unique nodes, so individuals contributing more edges receive proportionally more weight). Under independent pairing, the expected same-category rate is $E = \sum_i f_i \cdot t_i$. The observed rate $O$ is the fraction of edges whose source and target share a category. The \emph{homophily ratio} $H = O / E$ equals 1 under geographic neutrality; values above 1 indicate homophily, below 1 heterophily. As a complementary measure, we compute Newman's assortativity coefficient \cite{New2003} $r = \frac{\sum_i e_{ii} - \sum_i a_i b_i}{1 - \sum_i a_i b_i}$, where $e_{ii}$ is the fraction of edges connecting same-category nodes, and $a_i$ and $b_i$ are the fractions of edge endpoints originating from and terminating in category $i$. For the primary nominator $\to$ nominee edge at the country level, $r = 0.41$, confirming strong geographic sorting.
 
 Geographic data comes from two sources. The nomination archive records country of professional activity at the time of each nomination (e.g., Enrico Fermi appears as ``Italy'' in 1935--1938 and ``United States'' post-1939). For all other edge types, geographic attributes come from Wikidata birth country. The primary nominator $\to$ nominee analysis therefore measures sorting by professional affiliation; institutional-layer analyses measure sorting by birth country.
 
@@ -411,7 +411,7 @@ For the Peace Prize, the \emph{Storting} (Norwegian parliament) is the governing
 
 \begin{table}
 \centering
-\caption{\textbf{Geographic homophily by edge type and geographic scale.} Homophily ratio is observed as the same-geography rate divided by the expected rate under random pairing. $p$-values from 10,000 permutations.}
+\caption{\textbf{Geographic homophily by edge type and geographic scale.} The homophily ratio equals the observed same-geography rate divided by the expected rate under random pairing. $p$-values from 10,000 permutations.}
 \label{tab:homophily_edge_type}
 \footnotesize
 \begin{tabular}{llrrrrc}
@@ -437,7 +437,7 @@ Nominator $\rightarrow$ Nominee & subregion & 25,844 & 60.8\% & 24.9\% & 2.44 & 
 
 \begin{table}
 \centering
-\caption{\textbf{Temporal trends in nominee pool diversity and nomination homophily.} Homophily ratio measures continent-level geographic matching relative to the random expectation. $O - E$ is the absolute excess same-continent rate in percentage points. $p$-values from 10,000 permutations.}
+\caption{\textbf{Temporal trends in nominee pool diversity and nomination homophily.} Homophily ratio measures continent-level geographic matching relative to the random expectation. $O - E$ is the raw difference between observed and expected same-continent rates, in percentage points. $p$-values from 10,000 permutations.}
 \label{tab:temporal_homophily}
 \small
 \begin{tabular}{lrrrrrrrc}
