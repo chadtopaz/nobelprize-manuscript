@@ -1,0 +1,121 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem{CasFan2013}
+A.~Casadevall, F.~C. Fang, Is the {N}obel {P}rize good for science? \emph{FASEB J.} \textbf{27}~(12), 4682--4690 (2013).
+
+\bibitem{LunJenJau2019}
+P.~Lunnemann, M.~H. Jensen, L.~Jauffred, Gender bias in {N}obel prizes. \emph{Palg. Comm.} \textbf{5}~(46), 1--4 (2019).
+
+\bibitem{ChaEllRah2011}
+C.~Charyton, J.~O. Elliott, M.~A. Rahman, J.~L. Woodard, S.~DeDios, Gender and science: women {N}obel laureates. \emph{J. Creative Behav.} \textbf{45}~(3), 203--214 (2011).
+
+\bibitem{Cra2001}
+E.~Crawford, Nobel population 1901--50: anatomy of a scientific elite. \emph{Phys. World} \textbf{14}~(11), 31--35 (2001).
+
+\bibitem{vonZed2025}
+M.~von Zedtwitz, R.~Frietsch, C.~Rammer, A.~L.~J. Terwal, The {N}obel ``{P}ride'' Phenomenon. \emph{Res. Policy} \textbf{53}~(10), 105106 (2025), \doi{10.1016/j.respol.2024.105106}.
+
+\bibitem{Mer1968}
+R.~K. Merton, The {M}atthew Effect in Science. \emph{Science} \textbf{159}~(3810), 56--63 (1968), \doi{10.1126/science.159.3810.56}.
+
+\bibitem{Zuc1977}
+H.~Zuckerman, \emph{Scientific Elite: {N}obel Laureates in the {U}nited {S}tates} (Free Press, New York) (1977).
+
+\bibitem{ColCol1973}
+J.~R. Cole, S.~Cole, \emph{Social Stratification in Science} (University of Chicago Press, Chicago) (1973).
+
+\bibitem{Gar1972}
+E.~Garfield, Citation Analysis as a Tool in Journal Evaluation. \emph{Science} \textbf{178}~(4060), 471--479 (1972), \doi{10.1126/science.178.4060.471}.
+
+\bibitem{NeiVueVue2024}
+K.~Neikirk, \emph{et~al.}, Disparities in Funding for {N}obel {P}rize Awards in Medicine and Physiology Across Nationalities, Races, and Gender. \emph{J. Cell. Physiol.} \textbf{239}~(7), e31157 (2024), \doi{10.1002/jcp.31157}.
+
+\bibitem{McPSmoCoo2001}
+M.~McPherson, L.~Smith-Lovin, J.~M. Cook, Birds of a Feather: Homophily in Social Networks. \emph{Annu. Rev. Sociol.} \textbf{27}, 415--444 (2001), \doi{10.1146/annurev.soc.27.1.415}.
+
+\bibitem{methods}
+Materials and methods are available as supplementary material.
+
+\bibitem{GalDom2019}
+R.~Gallotti, M.~De~Domenico, Effects of homophily and academic reputation in the nomination and selection of {N}obel laureates. \emph{Sci. Rep.} \textbf{9}~(1), 1--12 (2019).
+
+\bibitem{WagHorWhe2015}
+C.~S. Wagner, E.~Horlings, T.~A. Whetsell, P.~Mattsson, K.~Nordqvist, Do {N}obel Laureates Create Prize-Winning Networks? {A}n Analysis of Collaborative Research in Physiology or Medicine. \emph{PLOS ONE} \textbf{10}~(7), e0134164 (2015), \doi{10.1371/journal.pone.0134164}.
+
+\bibitem{ZumTep2025}
+K.~Zumel-Dumlao, M.~Teplitskiy, Geographical diversity of peer reviewers shapes author success. \emph{Proc. Natl. Acad. Sci. U.S.A.} \textbf{122}~(24), e2507394122 (2025), \doi{10.1073/pnas.2507394122}.
+
+\bibitem{ModGilSha2018}
+S.~Modgil, R.~Gill, V.~L. Sharma, S.~Velassery, A.~Anand, {N}obel Nominations in Science: Constraints of the Fairer Sex. \emph{Ann. Neurosci.} \textbf{25}~(2), 63--79 (2018), \doi{10.1159/000481906}.
+
+\bibitem{KoJanYan2024}
+B.-K. Ko, Y.~Jang, J.-S. Yang, Universalism and particularism in the recommendations of the {N}obel {P}rize for science. \emph{Scientometrics} \textbf{129}, 847--868 (2024), \doi{10.1007/s11192-023-04921-0}.
+
+\bibitem{Kivela2014}
+M.~Kivel{\"a}, \emph{et~al.}, Multilayer networks. \emph{J. Complex Netw.} \textbf{2}~(3), 203--271 (2014), \doi{10.1093/comnet/cnu016}.
+
+\bibitem{New2003}
+M.~E.~J. Newman, Mixing patterns in networks. \emph{Phys. Rev. E} \textbf{67}, 026126 (2003), \doi{10.1103/PhysRevE.67.026126}.
+
+\bibitem{JafTraHen1993}
+A.~B. Jaffe, M.~Trajtenberg, R.~Henderson, Geographic Localization of Knowledge Spillovers as Evidenced by Patent Citations. \emph{Q. J. Econ.} \textbf{108}~(3), 577--598 (1993), \doi{10.2307/2118401}.
+
+\bibitem{Lam2009}
+M.~Lamont, \emph{How Professors Think: Inside the Curious World of Academic Judgment} (Harvard University Press, Cambridge, MA) (2009).
+
+\bibitem{Livingstone2003}
+D.~N. Livingstone, \emph{Putting Science in Its Place: Geographies of Scientific Knowledge} (University of Chicago Press) (2003).
+
+\bibitem{Nature2022}
+{Nature editorial board}, Diversity in science prizes: why is progress so slow? \emph{Nature} \textbf{606}~(7914), 433--434 (2022).
+
+\bibitem{But2016}
+D.~Butler, Close but no {N}obel: the scientists who never won. \emph{Nature} \textbf{536}, 16--17 (2016), \doi{10.1038/536016a}.
+
+\bibitem{nobelgithub}
+C.~M. Topaz, \emph{et~al.}, Replication Data for: {The} Geography of {Nobel} Prize Selection, \url{https://doi.org/10.5281/zenodo.19262177} (2026).
+
+\bibitem{Sha1994}
+S.~Shapin, \emph{A Social History of Truth: Civility and Science in Seventeenth-Century {E}ngland} (University of Chicago Press, Chicago) (1994).
+
+\bibitem{wikidata}
+{Wikimedia Foundation}, Wikidata: The Free Knowledge Base, \url{https://www.wikidata.org}, accessed August 2022 (2022).
+
+\bibitem{KarolinskaEmployees}
+{Wikipedia contributors}, Kategori:Personer verksamma vid Karolinska Institutet, \url{https://sv.wikipedia.org/wiki/Kategori:Personer_verksamma_vid_Karolinska_Institutet} (2022).
+
+\bibitem{NobelCommitteeChemistry}
+{Wikipedia contributors}, Vetenskapsakademiens Nobelkommitt\'{e} f\"{o}r kemi, \url{https://sv.wikipedia.org/wiki/Vetenskapsakademiens_Nobelkommitt\%C3\%A9_f\%C3\%B6r_kemi} (2022).
+
+\bibitem{NobelCommitteePhysics}
+{Wikipedia contributors}, Vetenskapsakademiens Nobelkommitt\'{e} f\"{o}r fysik, \url{https://sv.wikipedia.org/wiki/Vetenskapsakademiens\_Nobelkommitt\%C3\%A9\_f\%C3\%B6r\_fysik}, accessed August 2022 (2022).
+
+\bibitem{NobelCommitteePhysiology}
+{Wikipedia contributors}, Karolinska Institutets Nobelkommitt\'{e}, \url{https://sv.wikipedia.org/wiki/Karolinska\_Institutets\_Nobelkommitt\%C3\%A9}, accessed August 2022 (2022).
+
+\bibitem{Ledamotsregister}
+{Svenska Akademien}, Ledamotsregister, \url{https://www.svenskaakademien.se/svenska-akademien/ledamotsregister}, accessed August 2022 (2022).
+
+\bibitem{NorwegianNobelCommittee}
+{Wikipedia contributors}, List of members of the Norwegian Nobel Committee, \url{https://en.wikipedia.org/wiki/List\_of\_members\_of\_the\_Norwegian\_Nobel\_Committee} (2022).
+
+\bibitem{NobelPrizeWebsite}
+{Nobel Foundation}, {N}obel {P}rize Nomination Archive, \url{https://www.nobelprize.org/nomination/archive/search.php}, accessed August 2022 (2022).
+
+\bibitem{NobelPrizeWebsiteFull}
+{Nobel Foundation}, {The Official Website of the Nobel Prize}, \url{https://www.nobelprize.org}, accessed August 2022 (2022).
+
+\bibitem{RSAS}
+{Royal Swedish Academy of Sciences}, {The Website of the Royal Swedish Academy of Sciences}, \url{https://www.kva.se/en}, accessed August 2022 (2022).
+
+\bibitem{KINA}
+{Karolinska Institutet}, {The Nobel Assembly at Karolinska Institutet}, \url{https://ki.se/en/about/the-nobel-assembly-at-karolinska-institutet}, accessed August 2022 (2022).
+
+\bibitem{NPPWiki}
+{Wikipedia contributors}, {Nobel Peace Prize --- Wikipedia, The Free Encyclopedia}, \url{https://en.wikipedia.org/w/index.php?title=Nobel_Peace_Prize}, accessed August 2022 (2022).
+
+\end{thebibliography}
